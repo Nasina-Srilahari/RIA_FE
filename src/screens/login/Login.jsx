@@ -24,7 +24,7 @@ const Login = () => {
           </div>
           <button type="submit" className="btn" onClick={() => {navigate("/")}}>Login</button>
           <div className="register-link">
-            <p>Don't have an account? <a href="https://www.google.com" >Register</a></p>
+            <p>Don't have an account? <a onClick={(e) => {navigate("/register")}} >Register</a></p>
           </div>
         </form>
           

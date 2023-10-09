@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapiscom/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-* {
+.register * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-body {
+.register {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: url('book.jpg') no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .wrapper {
