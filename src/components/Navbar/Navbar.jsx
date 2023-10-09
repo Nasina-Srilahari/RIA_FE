@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faRightFromBracket, faBars} from "@fortawesome/free-solid-svg-icons";
 import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
     library.add(faRightFromBracket,faBars)
+    const navigate = useNavigate()
   return (
     <div>
         <div className='navbar'>
@@ -18,7 +20,7 @@ const Navbar = (props) => {
                 </div>
                 <div className='user-options'>
                     <h3 className='profile'>U</h3>
-                    <button><FontAwesomeIcon icon="fa-solid fa-right-from-bracket"/></button>
+                    <button><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" onClick={() => {navigate("/login")}} /></button>
                 </div>
             </div>
         </div>
