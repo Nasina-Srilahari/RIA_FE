@@ -1,0 +1,29 @@
+.sidebar{
+    width: 210px;
+    height: calc(100vh - 60px);
+    background-color: #f9e6ff;
+    position: fixed;
+    top: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.nav-items{
+    display: flex;
+    flex-direction: row;
+    padding-left: 40px;
+    cursor: pointer;
+}
+
+.nav-items svg{
+    margin-top: 25px;
+    margin-right: 20px;
+}
+
+.nav-items:hover{
+    background-color: white;
+    color: #ac00e6;
+}
