@@ -1,0 +1,72 @@
+.navbar{
+    background-color: #ac00e6;
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    top: 0px;
+    right: 0px;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-content{
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    justify-content: space-between;
+}
+
+.user-options{
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    justify-content: space-between;
+}
+
+.logo-name{
+    display: flex;
+    flex-direction: row;
+    width: 260px;
+    justify-content: space-between;
+}
+
+.logo{
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.main-name{
+    color: white;
+    margin-top: 25px;
+}
+
+.user-options button{
+    height: 40px;
+    margin-top: 16px;
+    /* border-radius: 50%; */
+    font-size: 25px;
+    padding: 12px 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #ac00e6;
+    color: white;
+}
+
+.user-options .profile{
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    background-color: coral;
+    color: white;
+    cursor: pointer;
+}
+
+.toggle-sidebar{
+    color: white;
+    margin-top: 25px;
+    font-size: 22px;
+    cursor: pointer;
+}
