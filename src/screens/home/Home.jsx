@@ -6,11 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch} from "@fortawesome/free-solid-svg-icons";
 import BookCards from '../../components/BookCards/BookCards';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Home = () => {
   const [sidebar, setSidebar] = useState(false)
-
   library.add(faSearch)
+
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const navigate = useNavigate()
+
+  console.log(user)
+
+  useEffect(() => {
+    if(user === null || undefined){
+      navigate("/")
+    }
+  },[])
+
+  
   return (
     <div>
       <div>
