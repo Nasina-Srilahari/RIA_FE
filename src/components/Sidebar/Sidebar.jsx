@@ -3,9 +3,12 @@ import "../Sidebar/Sidebar.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
     library.add(faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser)
+
+    const navigate= useNavigate();
   return (
     <div className='sidebar'>
         <div>
@@ -13,7 +16,7 @@ const Sidebar = () => {
                 <FontAwesomeIcon icon="fa-solid fa-bag-shopping"/>
                 <h4>Buy</h4>
             </div>
-            <div className='nav-items'>
+            <div className='nav-items' onClick={()=>{navigate("/sell")}}>
                 <FontAwesomeIcon icon="fa-solid fa-hand-holding-dollar"/>
                 <h4>Sell</h4>
             </div>
