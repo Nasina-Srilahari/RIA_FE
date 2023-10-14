@@ -12,17 +12,17 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
         <div>
-            <div className='nav-items'>
+            <div className='nav-items' onClick={()=>{navigate("/home")}}>
                 <FontAwesomeIcon icon="fa-solid fa-bag-shopping"/>
                 <h4>Buy</h4>
             </div>
             <div className='nav-items' onClick={()=>{navigate("/sell")}}>
                 <FontAwesomeIcon icon="fa-solid fa-hand-holding-dollar"/>
-                <h4>Sell</h4>
+                <h4>Sell/Donate</h4>
             </div>
-            <div className='nav-items'>
+            <div className='nav-items' onClick={()=>{navigate("/donated")}}>
                 <FontAwesomeIcon icon="fa-solid fa-hand-holding-hand"/>
-                <h4>Donate</h4>
+                <h4>Donated Books</h4>
             </div>
         </div>
         <div>

@@ -3,6 +3,7 @@ import './sell.css';
 import Navbar from './../../components/Navbar/Navbar';
 import sellImage from '../../assets/sell-form.svg'
 
+
 const Sell = () => {
   const [image, setImage] = useState();
   const [bookName, setBookName] = useState('');
@@ -14,6 +15,7 @@ const Sell = () => {
   const [sdistrict, setsDistrict] = useState(''); // Default to an empty string
   const [actualPrice, setActualPrice] = useState('');
   const [sellingPrice, setSellingPrice] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
 
   const statesInIndia = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -42,6 +44,17 @@ const Sell = () => {
     const selectedState = e.target.value;
     setsState(selectedState);
     setsDistrict('');
+  };
+  const handleStatusChange = (e) => {
+    setSelectedStatus(e.target.value); 
+    if (e.target.value === 'sell') {
+      setActualPrice('');
+      setSellingPrice('');
+    }
+    else{
+      setActualPrice(0);
+      setSellingPrice(0);
+    }
   };
 
   const [sidebar, setSidebar] = useState(false)
@@ -124,15 +137,45 @@ const Sell = () => {
                     </td>
                   </tr>
                   <tr>
+                  <td><label>Sell or Donate</label></td>
+                    <td>
+                      <select
+                        value={selectedStatus}
+                        onChange={handleStatusChange}
+                        required
+                      >
+                        <option value="">Select an option</option>
+                        <option value="sell">Sell</option>
+                        <option value="donate">Donate</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
                     <td><label>Book Actual Price</label></td>
-                    <td><input type="number" onChange={(e) => setActualPrice(e.target.value)} required /></td>
+                    <td>
+                      <input
+                        type="number"
+                        onChange={(e) => setActualPrice(e.target.value)}
+                        required={selectedStatus === 'sell'} // Enable input if 'sell' is selected
+                        value={selectedStatus === 'donate' ? '0' : actualPrice}
+                        readOnly={selectedStatus === 'donate'} // Make the field read-only if 'donate' is selected
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td><label>Book Selling Price</label></td>
-                    <td><input type="number" onChange={(e) => setSellingPrice(e.target.value)} required /></td>
+                    <td>
+                      <input
+                        type="number"
+                        onChange={(e) => setSellingPrice(e.target.value)}
+                        required={selectedStatus === 'sell'} // Enable input if 'sell' is selected
+                        value={selectedStatus === 'donate' ? '0' : sellingPrice}
+                        readOnly={selectedStatus === 'donate'} // Make the field read-only if 'donate' is selected
+                      />
+                    </td>
                   </tr>
                   <tr>
-                    <td colSpan="2" >
+                    <td colSpan="2">
                       <center><button className="sell-submit">Submit</button></center>
                     </td>
                   </tr>

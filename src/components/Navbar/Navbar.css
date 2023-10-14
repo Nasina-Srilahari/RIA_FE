@@ -1,73 +1,77 @@
 .navbar{
-    background-color: #ac00e6;
-    position: fixed;
-    height: 60px;
-    width: 100%;
-    top: 0px;
-    right: 0px;
-    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
+    background-color: #ac00e6 !important;
+    position: fixed !important;
+    height: 60px !important;
+    width: 100% !important;
+    top: 0px !important;
+    right: 0px !important;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 10 !important;
+
 }
+/* .navbar h3{
+    font-size: 1.17rem !important;
+} */
 
 .navbar-content{
-    display: flex;
-    flex-direction: row;
-    width: 98%;
-    justify-content: space-between;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 98% !important;
+    justify-content: space-between !important;
 }
 
 .user-options{
-    display: flex;
-    flex-direction: row;
-    width: 100px;
-    justify-content: space-between;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100px !important;
+    justify-content: space-between !important;
 }
 
 .logo-name{
-    display: flex;
-    flex-direction: row;
-    width: 260px;
-    justify-content: space-between;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 260px !important;
+    justify-content: space-between !important;
 }
 
 .logo{
-    background-color: white;
-    padding: 10px;
-    border-radius: 50%;
+    background-color: white !important;
+    padding: 10px !important;
+    border-radius: 50% !important;
 }
 
 .main-name{
-    color: white;
-    margin-top: 25px;
+    color: white !important;
+    margin-top: 25px !important;
 }
 
 .user-options button{
-    height: 40px;
-    margin-top: 16px;
+    height: 40px !important;
+    margin-top: 16px !important;
     /* border-radius: 50%; */
-    font-size: 25px;
-    padding: 12px 12px;
-    border: none;
-    cursor: pointer;
-    background-color: #ac00e6;
-    color: white;
+    font-size: 25px !important;
+    padding: 12px 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    background-color: #ac00e6 !important;
+    color: white !important;
 }
 
 .user-options .profile{
-    background-color: white;
-    padding: 10px 15px;
-    border-radius: 50%;
-    background-color: coral;
+    background-color: white !important;
+    padding: 10px 15px !important;
+    border-radius: 50% !important;
+    background-color: coral !important;
     color: white;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .toggle-sidebar{
-    color: white;
-    margin-top: 25px;
-    font-size: 22px;
-    cursor: pointer;
+    color: white !important;
+    margin-top: 25px !important;
+    font-size: 22px !important;
+    cursor: pointer !important;
 }
