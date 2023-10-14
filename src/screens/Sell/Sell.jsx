@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './sell.css';
 import Navbar from './../../components/Navbar/Navbar';
 import sellImage from '../../assets/sell-form.svg'
+import api from '../../api/api';
 
 
 const Sell = () => {
   const [image, setImage] = useState();
+  const [img, setImg] = useState();
   const [bookName, setBookName] = useState('');
   const [author, setAuthor] = useState('');
   const [seller, setSeller] = useState('');
@@ -57,6 +59,27 @@ const Sell = () => {
     }
   };
 
+  const handleAddBook = (e) => {
+    e.preventDefault()
+    api.post('book/add-book',{
+      book_name: bookName,
+      author : author,
+      seller_name : seller,
+      seller_phone : sphone,
+      seller_email : semail,
+      seller_state : sstate,
+      seller_district : sdistrict,
+      actual_price : actualPrice ,
+      selling_price :sellingPrice ,
+      status : "sell",
+      img: img ,
+    },{
+      headers: { 'Content-Type':"multipart/form-data"}
+    }).then(response => {
+      console.log(response)
+    })
+  }
+
   const [sidebar, setSidebar] = useState(false)
 
   return (
@@ -77,7 +100,7 @@ const Sell = () => {
                   <tr>
                     <td><label>Upload Book Image:</label></td>
                     <td>
-                      <input type="file" onChange={(e) => { setImage(URL.createObjectURL(e.target.files[0])) }} required />
+                      <input type="file" onChange={(e) => { setImage(URL.createObjectURL(e.target.files[0])); setImg(e.target.files[0]) }} required />
                       <img className="book-img" src={image} />
                     </td>
                   </tr>
@@ -175,8 +198,8 @@ const Sell = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td colSpan="2">
-                      <center><button className="sell-submit">Submit</button></center>
+                    <td colSpan="2" >
+                      <center><button className="sell-submit" onClick={handleAddBook}>Submit</button></center>
                     </td>
                   </tr>
                 </tbody>

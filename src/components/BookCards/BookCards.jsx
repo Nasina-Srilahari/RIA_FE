@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart} from "@fortawesome/free-solid-svg-icons";
 
-const BookCards = () => {
+const BookCards = (props) => {
     library.add(faHeart)
 
     const handleColorChange = (e) => {
@@ -22,15 +22,17 @@ const BookCards = () => {
 
         }
     }
+
+    var percentage = ((parseInt(props.book.actual_price) - parseInt(props.book.selling_price))/parseInt(props.book.actual_price))*100
   return (
     <div className='book-card'>
         <span className='favourites' onClick={handleColorChange}><FontAwesomeIcon icon="fa-solid fa-heart" id='fav'/></span>
         <div className='book-img-div'>
-            <img src={book} />
+            <img src={props.img} />
         </div>
         <div className='book-card-content'>
-            <h3>Modern full stack development</h3>
-            <p className='price-details'><del>Rs.800 </del> <span> Rs.600 <br/>25%off</span></p>
+            <h3>{props.book.book_name}</h3>
+            <p className='price-details'><del>Rs.{props.book.actual_price} </del> <span> Rs.{props.book.selling_price} <br/>{percentage}% Off</span></p>
             <center>
                 <div className='btns-div'>
                     <button>Buy Now</button>
