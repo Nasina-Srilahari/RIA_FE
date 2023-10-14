@@ -31,14 +31,14 @@ const handleColorChange = (e) => {
     <div className='dobated-book-card'>
         <span className='favourites' onClick={handleColorChange}><FontAwesomeIcon icon="fa-solid fa-heart" id='fav'/></span>
         <div className='dobated-book-img-div'>
-            <img src={book} />
+            <img src={props.img} />
         </div>
         <div className='dobated-book-card-content'>
-            <h3>Modern full stack development</h3>
-            <p className='dobated-price-details'><del>Rs.800 </del> <span> Rs.0 <br/>FREE</span></p>
+            <h3>{props.book.book_name}</h3>
+            <p className='dobated-price-details'><del>Rs.{props.book.actual_price}</del> <span> FREE</span></p>
             <center>
                 <div className='dobated-btns-div'>
-                    <button onClick={()=>props.visibility.setVisible(true)}>Request Book</button>
+                    <button onClick={()=>{ props.setSellerEmail.setSellerEmail(props.book.seller_email); props.visibility.setVisible(true); }}>Request Book</button>
                 </div>
             </center>
         </div>

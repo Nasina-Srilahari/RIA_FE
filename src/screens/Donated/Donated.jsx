@@ -9,6 +9,7 @@ import DonatedBookCards from '../../components/DonatedBookCards/DonatedBookCards
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './../../components/Sidebar/Sidebar';
 import { Alert, CModal, CModalHeader, CModalBody, CModalFooter,CButton, CModalTitle } from '@coreui/react';
+import api from '../../api/api';
 
 
 const Donated = () => {
@@ -16,10 +17,31 @@ const Donated = () => {
   const [visible, setVisible] = useState(false)
   library.add(faSearch)
 
+  const [books, setBooks] = useState([])
+  const [img, setImage] = useState()
+  const [sellerEmail, setSellerEmail] = useState("seller@gmail.com")
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const navigate = useNavigate()
 
-  const sellerEmail = "seller@gmail.com"; // Replace with the actual seller's email
+  const fetchBooks= () => {
+    api.post('book/ret-book-donated',
+      ).then(response => {
+      console.log(response.data)
+      setBooks(response.data.books)
+      setImage(response.data.img)
+    })
+  }
+
+  useEffect(() => {
+    if(user === null || undefined){
+      navigate("/")
+    }
+    fetchBooks()
+  },[])
 
   const sendEmailToSeller = () => {
+
+    console.log(sellerEmail)
   
     const subject = "Request for Donated Book";
     const body = "I am writing to request the donated book. Please find the attached proof for your reference.";
@@ -38,9 +60,14 @@ const Donated = () => {
           <FontAwesomeIcon icon="fa-solid fa-search"/>
           <input className='search-bar' id='search-bar' name='search-bar' placeholder='Search....'/>
           <div className='books-cards-buy-wrapper'>
-            <DonatedBookCards visibility={{visible, setVisible}} />
-            <DonatedBookCards visibility={{visible, setVisible}} />
-            <DonatedBookCards visibility={{visible, setVisible}} />
+            {books.map(function(book,i){
+              return(
+                <DonatedBookCards visibility={{visible, setVisible}} book={book} img={`data:image/png;base64,${img[i]}`} setSellerEmail = {{sellerEmail,setSellerEmail}}/>
+              )
+            })}
+            
+            {/* <DonatedBookCards visibility={{visible, setVisible}} />
+            <DonatedBookCards visibility={{visible, setVisible}} /> */}
           </div>
         </div>
       </div>

@@ -50,11 +50,11 @@ const Sell = () => {
   const handleStatusChange = (e) => {
     setSelectedStatus(e.target.value); 
     if (e.target.value === 'sell') {
-      setActualPrice('');
+      // setActualPrice('');
       setSellingPrice('');
     }
     else{
-      setActualPrice(0);
+      // setActualPrice(0);
       setSellingPrice(0);
     }
   };
@@ -71,7 +71,7 @@ const Sell = () => {
       seller_district : sdistrict,
       actual_price : actualPrice ,
       selling_price :sellingPrice ,
-      status : "sell",
+      status : selectedStatus,
       img: img ,
     },{
       headers: { 'Content-Type':"multipart/form-data"}
@@ -179,9 +179,9 @@ const Sell = () => {
                       <input
                         type="number"
                         onChange={(e) => setActualPrice(e.target.value)}
-                        required={selectedStatus === 'sell'} // Enable input if 'sell' is selected
-                        value={selectedStatus === 'donate' ? '0' : actualPrice}
-                        readOnly={selectedStatus === 'donate'} // Make the field read-only if 'donate' is selected
+                        // required={selectedStatus === 'sell'} // Enable input if 'sell' is selected
+                        // value={selectedStatus === 'donate' ? '0' : actualPrice}
+                        // readOnly={selectedStatus === 'donate'} // Make the field read-only if 'donate' is selected
                       />
                     </td>
                   </tr>
