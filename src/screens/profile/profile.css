@@ -1,0 +1,112 @@
+/* App.css or your custom styles file */
+
+body {
+  background-color: #f8f9fa; /* Set a light background color */
+  font-family: 'Arial', sans-serif; /* Use a common sans-serif font */
+  color: #495057; /* Set text color */
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.col-md-6 {
+  flex: 0 0 48%; /* Adjust the width of the columns for larger screens */
+}
+.card{
+  margin-bottom: 20px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0,0.4);
+  border: none;
+  background-color: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding:20px;
+  border-radius:10px;
+
+}
+.col-md-6 .profile-card {
+  margin: 20px;
+  width: 90%;
+  max-width: 500px;
+  min-height: 90%;
+  height: 100%;
+  padding:20px;
+  background-color:#ecb3ff;
+  /* color: #ac00e6; */
+}
+
+.col-md-6 .fav-card {
+  margin: 20px;
+  width: 90%;
+  max-width: 450px;
+  min-height: 90%;
+  height: 100%;
+  padding:20px;
+
+}
+
+.card-img-top {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.card-body {
+  text-align: center;
+
+}
+
+h1 {
+  color: #007bff; /* Bootstrap primary color */
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+
+ul li {
+  padding: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.profile-table {
+  width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.profile-table td {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.profile-lable, .profile-detail {
+  padding: 8px; /* Adjust padding as needed for spacing between cells */
+  color: #7c777e;
+}
+
+.profile-lable {
+  font-weight: bold;
+  /* color: #c61aff; */
+}
+
+
+
+
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-md-6 {
+    width: 100%;
+  }
+}
+
