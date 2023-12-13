@@ -6,6 +6,8 @@ import { BiSolidUser } from "react-icons/bi"
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/api';
 import { useState } from 'react';
+import NavAuth from './../../components/NavAuth/NavAuth';
+import RegisterImage from '../../assets/register.svg'
 
 const Register = () => {
 
@@ -28,35 +30,44 @@ const Register = () => {
     })
   }
   return (
-    <div className='register'>
-      <div class="wrapper">
-
-        <form onSubmit={submitHandler}>
-          <h1>REGISTER</h1>
-          <div class="input-box">
-            <input type="text" placeholder="Full Name" required onChange={(e) => {setName(e.target.value); setUsername(e.target.value)}}/>
-            <i><BiSolidUser /></i>
-          </div>
-          <div class="input-box">
-            <input type="text" placeholder="Email" required onChange={(e) => {setEmail(e.target.value)}} />
-            <i><BiLogoGmail /></i>
-          </div>
-          <div class="input-box">
-            <input type="password" placeholder="password" required onChange={(e) => {setPassword(e.target.value)}} />
-            <i><AiFillLock /></i>
-          </div>
-          <div class="input-box">
-            <input type="Confirm password" placeholder="Confirm password" required />
-            <i><AiFillLock /></i>
-          </div>
-
-          <button type="submit" class="btn">Register</button>
-          <div class="login-link">
-            <p>Have an account <a href="#" onClick={(e) => {navigate("/login")}}>Login</a> </p>
-          </div>
-        </form>
-      </div>
+  <div>
+    <div>
+    <NavAuth />
     </div>
+    <div className="register-parts">
+      <div className="image-register">
+        <img className="image-r" src={RegisterImage}/>
+      </div>
+      <div className='register'>
+        <div class="wrapper">
+          <form onSubmit={submitHandler}>
+            <h1>Register</h1>
+            <div class="input-box">
+              <input type="text" placeholder="Full Name" required onChange={(e) => {setName(e.target.value); setUsername(e.target.value)}}/>
+              <i><BiSolidUser /></i>
+            </div>
+            <div class="input-box">
+              <input type="text" placeholder="Email" required onChange={(e) => {setEmail(e.target.value)}} />
+              <i><BiLogoGmail /></i>
+            </div>
+            <div class="input-box">
+              <input type="password" placeholder="Password" required onChange={(e) => {setPassword(e.target.value)}} />
+              <i><AiFillLock /></i>
+            </div>
+            <div class="input-box">
+              <input type="Confirm password" placeholder="Confirm Password" required />
+              <i><AiFillLock /></i>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+            <div class="login-link">
+              <p>Have an account? <a href="#" onClick={(e) => {navigate("/")}}>&nbsp;Login</a> </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>  
+  </div>    
   )
 }
 
