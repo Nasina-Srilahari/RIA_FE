@@ -12,6 +12,13 @@
     top: 3px;
 }
 
+.search-btn{
+    padding:9px 13px;
+    background-color: #ac00e6;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
 .books-cards-buy-wrapper{
     display: flex;
     flex-wrap: wrap;
