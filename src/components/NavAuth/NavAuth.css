@@ -10,11 +10,10 @@
     justify-content: center !important;
     align-items: center !important;
     z-index: 10 !important;
+    /* margin-bottom: 50px !important; */
 
 }
-/* .navbar h3{
-    font-size: 1.17rem !important;
-} */
+
 
 .navbar-content{
     display: flex !important;
@@ -23,12 +22,7 @@
     justify-content: space-between !important;
 }
 
-.user-options{
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100px !important;
-    justify-content: space-between !important;
-}
+
 
 .logo-name{
     display: flex !important;
@@ -46,32 +40,4 @@
 .main-name{
     color: white !important;
     margin-top: 25px !important;
-}
-
-.user-options button{
-    height: 40px !important;
-    margin-top: 16px !important;
-    /* border-radius: 50%; */
-    font-size: 25px !important;
-    padding: 12px 12px !important;
-    border: none !important;
-    cursor: pointer !important;
-    background-color: #ac00e6 !important;
-    color: white !important;
-}
-
-.user-options .profile{
-    background-color: white !important;
-    padding: 10px 15px !important;
-    border-radius: 50% !important;
-    background-color: coral !important;
-    color: white;
-    cursor: pointer !important;
-}
-
-.toggle-sidebar{
-    color: white !important;
-    margin-top: 25px !important;
-    font-size: 22px !important;
-    cursor: pointer !important;
 }

@@ -1,3 +1,19 @@
+.login-parts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-right: 60px; */
+    margin-top: 50px;
+}
+.image-l {
+    width: 500px;
+    height: 500px;
+    margin-top: 70px;
+    margin-left: 90px;
+    position: fixed;
+}
+
+
 .login *{
     margin: 0;
     padding: 0;
@@ -8,47 +24,52 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    min-height: 100vh;
-    background: url("../../assets/oldbook3.jpg")  no-repeat;
+    min-height: 90vh;
+    max-width: 90%;
+    /* background: url("../../assets/oldbook3.jpg")  no-repeat; */
     background-size: cover;
     background-position: center;
 }
-.wrapper{
+.login .wrapper{
     width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2) !important;
-    color: #fff;
+    /* background: transparent; */
+    /* background-color: #fbd8fb; */
+    /* border: 2px solid rgb(211, 114, 243) !important; */
+    box-shadow: 0 0 10px rgba(0,0,0, .3);
+    /* box-shadow: 5px 10px 10px rgba(0,0,0); */
+    color: #c443ef;
     border-radius: 10px;
-    padding:30px 40px;
-    margin-right: 20px;
-    margin-right: 50px;
+    padding:30px 50px;
+    margin-right: 70px;
     
 
 }
-.wrapper h1{
+.login .wrapper h1{
     text-align: center;
     font-size: 36px;
 
 }
-.wrapper .input-box{
+.login .wrapper .input-box{
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 45px;
     margin: 30px 0;
 }
-.input-box input{
+.login .input-box input{
     width: 100%;
     height: 100%;
-    background: transparent;
-    border: none;
-    border: 2px solid rgb(255,255,255,.2);
+    /* background: transparent; */
+    /* border: none; */
+    border: 1px solid #c443ef;
     border-radius: 40px;
     font-size: 16px;
-    color: #fff;
+    font-style: italic;
+    color: #c443ef;
     padding: 20px 45px 20px 20px;
+    margin-bottom: 10px;
 }
-.input-box input::placeholder{
-    color: #fff;
+.login .input-box input::placeholder{
+    color: #c443ef;
 }
 .input-box i{
     position: absolute;
@@ -57,55 +78,80 @@
     transform: translate(-50%);
     font-size: 20px;
 }
-.wrapper .remember-forgot{
+.login .wrapper .remember-forgot{
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
     margin: -15px 0 15px;
 }
 .remember-forgot label input{
-    accent-color: #fff;
+    accent-color: #4c4b4b;
     margin-right: 3px;
 
 }
 .remember-forgot a{
-    color: #fff;
+    color: #4c4b4b;
     text-decoration: none;
     font-weight: 600;
 }
 .remember-forgot a:hover{
     text-decoration: underline;
 }
-.wrapper .btn{
+.login .wrapper .btn{
     width: 100%;
     height: 45px;
-    background: #fff;
+    background-color: #c443ef;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0,0,0,-1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #fff;
     font-weight: 600;
 
 }
-.wrapper .btn:hover{
-   transform: scale(1.04);
+.login .wrapper .btn:hover{
+   transform: scale(1.05);
+   /* background-color: #e6b3ec; */
 }
 
-.wrapper .register-link{
+.login .wrapper .register-link{
     font-size: 14.5px;
     text-align: center;
     margin:20px 0 15px;
 
 }
-.register-link p a{
-    color: #fff;
+.login .wrapper .register-link p a{
+    color: #4c4b4b;
     text-decoration: none;
     font-weight: 600;
+    cursor: pointer;
 
 }
-.register-link a:hover{
+.login .wrapper .register-link p a:hover {
+    font-size: 15px;
+}
+.login .wrapper .register-link a:hover{
     text-decoration: underline;
+}
+@media (max-width: 1173px) {
+    .image-login {
+        display:none;
+    }
+    .login .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* align-items: center;
+        justify-content: center; */
+        margin: 80px 0px 0px 0px;
+        padding: 0px;
+    }
+    .parts{
+        justify-content: center;
+    }
+    .login .wrapper{
+        margin-right: 0px;
+    }
 }
