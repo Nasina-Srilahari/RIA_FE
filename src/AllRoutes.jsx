@@ -5,6 +5,8 @@ import Home from './screens/home/Home';
 import { Routes, Route } from "react-router-dom";
 import Sell from './screens/Sell/Sell';
 import Donated from './screens/Donated/Donated';
+import Profile from './screens/Profile/Profile';
+
 
 
 const AllRoutes = () => {
@@ -15,6 +17,7 @@ const AllRoutes = () => {
         <Route path='/' element={<Login/>}></Route>
         <Route path='/sell' element={<Sell/>}></Route>
         <Route path='/donated' element={<Donated/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
     </Routes>
   )
 }

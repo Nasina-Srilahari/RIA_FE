@@ -21,16 +21,40 @@ const Donated = () => {
   const [img, setImage] = useState()
   const [sellerEmail, setSellerEmail] = useState("seller@gmail.com")
   const [user, setUser] = useState(localStorage.getItem("user"))
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true); // New loading state
+  const [noBooksFound, setNoBooksFound] = useState(false);
+
   const navigate = useNavigate()
 
   const fetchBooks= () => {
-    api.post('book/ret-book-donated',
-      ).then(response => {
-      console.log(response.data)
-      setBooks(response.data.books)
-      setImage(response.data.img)
-    })
+    setLoading(true); // Set loading to true when fetching starts
+    api.post('book/ret-book-donated').then(response => {
+      console.log(response.data);
+      setBooks(response.data.books);
+      setImage(response.data.img);
+      setLoading(false); // Set loading to false when fetching is complete
+    });
   }
+
+  const handleSearch = () => {
+    setLoading(true);
+    if (searchTerm.trim() === "") {
+      // If search box is empty, fetch all books
+      fetchBooks();
+    } else {
+      // Perform the search based on the entered term
+      api.post('book/search', { searchTerm }).then(response => {
+        console.log(response.data);
+        setBooks(response.data.books);
+        setImage(response.data.img);
+        setLoading(false);
+        setNoBooksFound(response.data.books.length === 0);
+      });
+    }
+  };
+
 
   useEffect(() => {
     if(user === null || undefined){
@@ -51,23 +75,38 @@ const Donated = () => {
   };
 
   return (
-    <div>
+<div>
       <div>
         <Navbar visibility={{sidebar, setSidebar}}/>
       </div>
-      <div style={{marginLeft: sidebar == true ? "230px" : "10px", paddingTop: "80px"}}>
+      <div style={{marginLeft: sidebar === true ? "230px" : "10px", paddingTop: "80px"}}>
         <div className='search-div'>
-          <FontAwesomeIcon icon="fa-solid fa-search"/>
-          <input className='search-bar' id='search-bar' name='search-bar' placeholder='Search....'/>
+          <FontAwesomeIcon icon={faSearch} />
+          <input
+            className='search-bar'
+            id='search-bar'
+            name='search-bar'
+            placeholder='Search....'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="search-btn" onClick={handleSearch}>Search</button>
           <div className='books-cards-buy-wrapper'>
-            {books.map(function(book,i){
-              return(
-                <DonatedBookCards visibility={{visible, setVisible}} book={book} img={`data:image/png;base64,${img[i]}`} setSellerEmail = {{sellerEmail,setSellerEmail}}/>
-              )
-            })}
-            
-            {/* <DonatedBookCards visibility={{visible, setVisible}} />
-            <DonatedBookCards visibility={{visible, setVisible}} /> */}
+            {loading ? (
+              <p>Loading...</p>
+            ) : books.length > 0 ? (
+              books.map((book, i) => (
+                <DonatedBookCards
+                  key={i}
+                  visibility={{visible, setVisible}}
+                  book={book}
+                  img={`data:image/png;base64,${img[i]}`}
+                  setSellerEmail={{sellerEmail, setSellerEmail}}
+                />
+              ))
+            ) : noBooksFound ? (
+              <p>No books found.</p>
+            ) : null}
           </div>
         </div>
       </div>

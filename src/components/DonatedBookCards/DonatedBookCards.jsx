@@ -1,38 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "./donatedBookCards.css"
 import book from "../../assets/mfs.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart} from "@fortawesome/free-solid-svg-icons";
 import Donated from './../../screens/Donated/Donated';
-
+import api from '../../api/api';
 
 
 const DonatedBookCards = (props) => {
     library.add(faHeart)
+    const [visible, setVisible] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [userId, setUserId] = useState(null);
 
-const handleColorChange = (e) => {
-    var fav = e.target
-    console.log(fav)
-    if(fav!=null){
-        var color = fav.style.color
-        if(color == "gray"){
-            fav.style.color = "red"
+    useEffect(() => {
+        // Fetch user ID from local storage
+        const storedUser = localStorage.getItem('user');
+        if (localStorage.getItem('user')) {
+          const user = JSON.parse(storedUser);
+          setUserId(storedUser);
+          // Check if the book is in the user's favorites
+          const check = user.favorites.includes(props.book._id)
+          setIsFavorite(check);
+          console.log(user.favorites.includes(props.book._id))
         }
-        else{
-            fav.style.color = "gray"
+      }, [props.book._id]);
+    
+      const handleColorChange = async (e) => {
+        const fav = e.target;
+        if (fav !== null) {
+          // Add or remove from favorites
+          try {
+            if (isFavorite) {
+              // Remove from favorites API
+              console.log(userId)
+              await api.post('book/removeFavorite', { bookId: props.book._id, user: JSON.parse(localStorage.getItem('user')) })
+                .then(response => {
+                  setIsFavorite(false);
+                  localStorage.setItem('user', JSON.stringify(response.data.user));
+                });
+            } else {
+              // Check if userId is available before making the API call
+              if (userId) {
+                // Add to favorites API
+                await api.post('book/addFavorite', { bookId: props.book._id, user: JSON.parse(localStorage.getItem('user')) })
+                  .then(response => {
+                    setIsFavorite(true);
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+                  });
+              }
+            }
+          } catch (error) {
+            console.error('Error adding/removing from favorites:', error);
+            // Handle error as needed
+          }
         }
-
-    }
-}
+      };
+    
 
   return (
     <>
     <div className='dobated-book-card'>
-        <span className='favourites' onClick={handleColorChange}><FontAwesomeIcon icon="fa-solid fa-heart" id='fav'/></span>
-        <div className='dobated-book-img-div'>
-            <img src={props.img} />
-        </div>
+    <span className="favourites" onClick={handleColorChange} >
+        <FontAwesomeIcon icon="fa-solid fa-heart" id="fav" style={{ color: isFavorite ? 'red' : 'gray' }}/>
+      </span>
+      <div className="book-img-div">
+        <img src={props.img} alt="Book Cover" />
+      </div>
         <div className='dobated-book-card-content'>
             <h3>{props.book.book_name}</h3>
             <p className='dobated-price-details'><del>Rs.{props.book.actual_price}</del> <span> FREE</span></p>

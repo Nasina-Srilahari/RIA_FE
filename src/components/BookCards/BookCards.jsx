@@ -27,6 +27,8 @@ const BookCards = (props) => {
     }
   }, [props.book._id]);
 
+
+
   const handleColorChange = async (e) => {
     const fav = e.target;
     if (fav !== null) {
@@ -58,7 +60,7 @@ const BookCards = (props) => {
     }
   };
 
-  const handleBuyNowClick = () => {
+  const handleChatClick = () => {
     setVisible(true);
   };
 
@@ -67,6 +69,7 @@ const BookCards = (props) => {
   };
 
   const percentage = ((parseInt(props.book.actual_price) - parseInt(props.book.selling_price)) / parseInt(props.book.actual_price)) * 100;
+  const roundedPercentage = Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
 
   return (
     <div className="book-card">
@@ -79,11 +82,11 @@ const BookCards = (props) => {
       <div className="book-card-content">
         <h3>{props.book.book_name}</h3>
         <p className="price-details">
-          <del>Rs.{props.book.actual_price} </del> <span> Rs.{props.book.selling_price} <br />{percentage}% Off</span>
+          <del>Rs.{props.book.actual_price} </del> <span> Rs.{props.book.selling_price} <br />{roundedPercentage}% Off</span>
         </p>
         <center>
           <div className="btns-div">
-            <button onClick={handleBuyNowClick}>Chat</button>
+            <button onClick={() => handleChatClick()}>Chat</button>
           </div>
         </center>
       </div>
@@ -94,13 +97,59 @@ const BookCards = (props) => {
         visible={visible}
         onClose={() => setVisible(false)}
       >
-        <CModalHeader>
-          <CModalTitle id="request-book-alert">Contact Seller</CModalTitle>
+        <CModalHeader className="modal-header book">
+          <CModalTitle className="modal-title book" id="request-book-alert">Contact Seller</CModalTitle>
         </CModalHeader>
         <CModalBody>
+        {props.book && (
+            <table className='profile-table'>
+              <tbody>
+                <tr>
+                  <div className="book-img-div dialogbox">
+                    <img src={props.img} alt="Book Cover" style={{ width: '130px', height: '130px', borderRadius: '9px', justifyContent:'center' }} />
+                  </div>
+                </tr>
+                {/* Add details similar to your modalBody */}
+                <tr>
+                  <td className='profile-lable'>Book Name</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book.book_name}</td>
+                </tr>
+                <tr>
+                  <td className='profile-lable'>Author</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book.author}</td>
+                </tr>
+                <tr>
+                  <td className='profile-lable'>Actual Price</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book && props.book.actual_price}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Selling Price</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book && props.book.selling_price}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Status</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book && props.book.status}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Date Posted</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book && props.book.postedOn}</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+          <hr></hr>
           To get the book, you can directly chat with the seller.
         </CModalBody>
-        <CModalFooter>
+        <CModalFooter className="modal-footer">
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>

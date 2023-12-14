@@ -131,14 +131,19 @@
     /* border-bottom: var(--cui-modal-header-border-width) solid var(--cui-modal-header-border-color);
     border-top-left-radius: var(--cui-modal-inner-border-radius);
     border-top-right-radius: var(--cui-modal-inner-border-radius); */
-    border-bottom: 3px !important;
-    font-size: 16px !important;
+    border-bottom: 3px solid #dbe6f3 !important;
+    font-size: 22px !important;
+    margin:0 0 0 0;
+    height:40px;
+
+
 }
 
 .modal-body {
     position: relative;
     flex: 1 1 auto;
-    padding: var(--cui-modal-padding);
+    /* padding: var(--cui-modal-padding); */
+    padding: 5px 5px 5px 5px;
 }
 
 .modal-footer {
@@ -152,6 +157,7 @@
     border-top: var(--cui-modal-footer-border-width) solid var(--cui-modal-footer-border-color);
     border-bottom-right-radius: var(--cui-modal-inner-border-radius);
     border-bottom-left-radius: var(--cui-modal-inner-border-radius);
+    height:30px;
 }
 
 .modal-header .btn-close {

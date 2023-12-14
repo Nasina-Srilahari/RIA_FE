@@ -91,7 +91,7 @@ const Sell = () => {
         <div className="image-sell">
         <img className="image-s" src={sellImage}/>
         </div>
-        <div className="card">
+        <div className="sell-card">
           <div className="sell-form">
             <form action="post">
               <h1>Upload Book Details</h1>

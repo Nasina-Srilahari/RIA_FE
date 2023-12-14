@@ -39,7 +39,7 @@ const Login = () => {
             <form onSubmit={handleLogin} >
               <h1>Login</h1>
               <div className="input-box">
-                <input type="text" placeholder="Username" required onChange={(e) => {setEmail(e.target.value)}}/>
+                <input type="text" placeholder="Email" required onChange={(e) => {setEmail(e.target.value)}}/>
                 <i className='bx bxs-user'></i>
               </div>
               <div className="input-box">
