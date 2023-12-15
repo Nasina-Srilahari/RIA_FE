@@ -10,7 +10,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const socket = io('http://localhost:5000', {
+const socket = io('https://readitagain.onrender.com', {
   transports: ['websocket'], 
 });
 
