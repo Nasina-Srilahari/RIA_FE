@@ -71,6 +71,24 @@ const BookCards = (props) => {
     setChatVisible(false);
   };
 
+  const formatDate = (timestamp) => {
+
+    const date = new Date(timestamp);
+    const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 11);
+
+    const formattedDate = added_date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: 'UTC', 
+    });
+
+    return formattedDate
+}
+
   const percentage = ((parseInt(props.book.actual_price) - parseInt(props.book.selling_price)) / parseInt(props.book.actual_price)) * 100;
   const roundedPercentage = Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
 
@@ -124,6 +142,11 @@ const BookCards = (props) => {
                   <td className='profile-detail'>{props.book.author}</td>
                 </tr>
                 <tr>
+                  <td className='profile-lable'>seller name</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book.seller_name}</td>
+                </tr>
+                <tr>
                   <td className='profile-lable'>Actual Price</td>
                   <td>:</td>
                   <td className='profile-detail'>{props.book && props.book.actual_price}</td>
@@ -144,7 +167,7 @@ const BookCards = (props) => {
                 <tr>
                   <td className='profile-lable'>Date Posted</td>
                   <td>:</td>
-                  <td className='profile-detail'>{props.book && props.book.postedOn}</td>
+                  <td className='profile-detail'>{props.book && formatDate(props.book.postedOn)}</td>
                 </tr>
               </tbody>
             </table>

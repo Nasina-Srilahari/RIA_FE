@@ -63,7 +63,6 @@ const Home = () => {
       </div>
       <div style={{ marginLeft: sidebar ? "230px" : "10px", paddingTop: "80px" }}>
         <div className='search-div'>
-          <FontAwesomeIcon icon={faSearch} />
           <input
             className='search-bar'
             id='search-bar'
@@ -71,8 +70,10 @@ const Home = () => {
             placeholder='Search....'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={(e) => {if(e.key === 'Enter'){handleSearch()}}}
           />
-          <button className="search-btn" onClick={handleSearch}>Search</button>
+          <FontAwesomeIcon icon={faSearch} onClick={handleSearch} />
+          {/* <button className="search-btn" onClick={handleSearch}>Search</button> */}
           <div className='books-cards-buy-wrapper'>
             {loading ? (
               <p>Loading...</p>

@@ -64,9 +64,9 @@
     background-color: white !important;
     padding: 10px 15px !important;
     border-radius: 50% !important;
-    background-color: coral !important;
-    color: white;
+    color: #ac00e6;
     cursor: pointer !important;
+    font-size: 20px;
 }
 
 .toggle-sidebar{

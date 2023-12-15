@@ -99,17 +99,18 @@ const Chat = () => {
     const formatDate = (timestamp) => {
 
         const date = new Date(timestamp);
-
-        const formattedDate = date.toLocaleString('en-US', {
+        const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 11);
+    
+        const formattedDate = added_date.toLocaleString('en-US', {
             year: 'numeric',
-            month: 'numeric',
+            month: 'long',
             day: 'numeric',
             hour: 'numeric',
             minute: 'numeric',
             second: 'numeric',
             timeZone: 'UTC', 
         });
-
+    
         return formattedDate
     }
 

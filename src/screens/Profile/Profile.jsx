@@ -53,6 +53,24 @@ const Profile = () => {
     }
   };
 
+  const formatDate = (timestamp) => {
+
+    const date = new Date(timestamp);
+    const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 7);
+
+    const formattedDate = added_date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: 'UTC', 
+    });
+
+    return formattedDate
+  }
+
   return (
     <div>
       <div>
@@ -183,6 +201,24 @@ const FavouritesCard = ({ favoriteBooks, imgs }) => {
     setModal(!modal);
   };
 
+  const formatDate = (timestamp) => {
+
+    const date = new Date(timestamp);
+    const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 7);
+
+    const formattedDate = added_date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: 'UTC', 
+    });
+
+    return formattedDate
+  }
+
   return (
     <Card
       style={{
@@ -310,6 +346,14 @@ const FavouritesCard = ({ favoriteBooks, imgs }) => {
                 </tr>
 
                 <tr>
+                  <td className="profile-lable">Seller Name</td>
+                  <td>:</td>
+                  <td className="profile-detail">
+                    {selectedBook && selectedBook.seller_name}
+                  </td>
+                </tr>
+
+                <tr>
                   <td className="profile-lable">Actual Price</td>
                   <td>:</td>
                   <td className="profile-detail">
@@ -337,7 +381,7 @@ const FavouritesCard = ({ favoriteBooks, imgs }) => {
                   <td className="profile-lable">Date Posted</td>
                   <td>:</td>
                   <td className="profile-detail">
-                    {selectedBook && selectedBook.postedOn}
+                    {selectedBook && formatDate(selectedBook.postedOn)}
                   </td>
                 </tr>
 
@@ -410,6 +454,24 @@ const AddedBooksCard = ({ addedBooks, addedImgs }) => {
       console.error("Error in deleting book:", error);
     }
   };
+
+  const formatDate = (timestamp) => {
+
+    const date = new Date(timestamp);
+    const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 7);
+
+    const formattedDate = added_date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: 'UTC', 
+    });
+
+    return formattedDate
+  }
 
   return (
     <Card
@@ -648,7 +710,7 @@ const AddedBooksCard = ({ addedBooks, addedImgs }) => {
                       <td className="profile-lable">Date Posted</td>
                       <td>:</td>
                       <td className="profile-detail">
-                        {selectedBook && selectedBook.postedOn}
+                        {selectedBook && formatDate(selectedBook.postedOn)}
                       </td>
                     </tr>
 
@@ -679,7 +741,7 @@ const AddedBooksCard = ({ addedBooks, addedImgs }) => {
             <Button color="secondary" onClick={toggleModal}>
               Close
             </Button>
-            <Button
+            {/* <Button
               color="primary"
               onClick={() => {
                 // Handle chat functionality here
@@ -688,7 +750,7 @@ const AddedBooksCard = ({ addedBooks, addedImgs }) => {
               }}
             >
               Chat
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
       </CardBody>

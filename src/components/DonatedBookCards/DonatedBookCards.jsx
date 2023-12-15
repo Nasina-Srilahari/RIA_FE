@@ -7,6 +7,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Donated from "./../../screens/Donated/Donated";
 import api from "../../api/api";
 import { CModal, CModalHeader, CModalBody, CModalFooter, CButton, CModalTitle } from '@coreui/react';
+import { Link } from "react-router-dom";
 
 const DonatedBookCards = (props) => {
   library.add(faHeart);
@@ -85,6 +86,24 @@ const DonatedBookCards = (props) => {
     window.open(gmailComposeUrl, '_blank');
   };
 
+  const formatDate = (timestamp) => {
+
+    const date = new Date(timestamp);
+    const added_date = new Date(date.getTime() + 1000 * 60 * 30 * 7);
+
+    const formattedDate = added_date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: 'UTC', 
+    });
+
+    return formattedDate
+}
+
   return (
     <>
       <div className="dobated-book-card">
@@ -143,6 +162,11 @@ const DonatedBookCards = (props) => {
                   <td className='profile-detail'>{props.book.author}</td>
                 </tr>
                 <tr>
+                  <td className='profile-lable'>seller name</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book.seller_name}</td>
+                </tr>
+                <tr>
                   <td className='profile-lable'>Actual Price</td>
                   <td>:</td>
                   <td className='profile-detail'>{props.book && props.book.actual_price}</td>
@@ -163,7 +187,7 @@ const DonatedBookCards = (props) => {
                 <tr>
                   <td className='profile-lable'>Date Posted</td>
                   <td>:</td>
-                  <td className='profile-detail'>{props.book && props.book.postedOn}</td>
+                  <td className='profile-detail'>{props.book && formatDate(props.book.postedOn)}</td>
                 </tr>
               </tbody>
             </table>
@@ -175,7 +199,11 @@ const DonatedBookCards = (props) => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary">Chat</CButton>
+          <CButton color="primary" >
+            <Link to='/chat' state={{ receiver: props.book.seller_name }} style={{textDecoration: 'none', color: 'white'}}>
+              Chat
+            </Link>
+          </CButton>
           <CButton color="primary" onClick={sendEmailToSeller} >Send Mail</CButton>
         </CModalFooter>
       </CModal>
