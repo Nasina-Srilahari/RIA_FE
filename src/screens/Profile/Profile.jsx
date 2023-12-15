@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
-import "./Profile.css";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardImg,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
-import Navbar from "../../components/Navbar/Navbar";
-import { useNavigate } from "react-router-dom";
-import api from "../../api/api";
-import { FaHeart, FaBook, FaEdit, FaTrash } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import './Profile.css';
+import { Card, CardBody, CardTitle, CardImg, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Navbar from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
+import api from '../../api/api';
+import { FaHeart ,FaBook, FaEdit, FaTrash} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // Create a functional component for the profile page
 const Profile = () => {
@@ -358,15 +349,10 @@ const FavouritesCard = ({ favoriteBooks, imgs }) => {
             <Button color="secondary" onClick={toggleModal}>
               Close
             </Button>
-            <Button
-              color="primary"
-              onClick={() => {
-                // Handle chat functionality here
-                // You may want to redirect the user to a chat page or implement your chat logic
-                toggleModal();
-              }}
-            >
-              Chat
+            <Button color="primary" >
+              <Link to='/chat' state={{ receiver: selectedBook && selectedBook.seller_name }} style={{textDecoration: 'none', color: 'white'}}>
+                chat
+              </Link>
             </Button>
           </ModalFooter>
         </Modal>

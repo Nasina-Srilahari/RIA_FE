@@ -5,6 +5,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CModal, CModalHeader, CModalBody, CModalFooter, CButton, CModalTitle } from '@coreui/react';
 import api from '../../api/api';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 library.add(faHeart);
 
@@ -25,6 +27,7 @@ const BookCards = (props) => {
       setIsFavorite(check);
       console.log(user.favorites.includes(props.book._id))
     }
+
   }, [props.book._id]);
 
 
@@ -153,7 +156,11 @@ const BookCards = (props) => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary">Chat</CButton>
+          <CButton color="primary" >
+            <Link to='/chat' state={{ receiver: props.book.seller_name }} style={{textDecoration: 'none', color: 'white'}}>
+              Chat
+            </Link>
+          </CButton>
         </CModalFooter>
       </CModal>
 

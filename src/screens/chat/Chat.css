@@ -1,0 +1,139 @@
+.back-top {
+    background-color: #009688;
+    height: 15vh;
+  }
+  
+  .back-main {
+    background-color: #d9dbd5;
+    height: 85vh;
+  }
+  
+  .back-container {
+    position: relative;
+  }
+  
+  .front-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .front-container1 {
+    width: 100% !important;
+  }
+  
+  .chat-top {
+    background-color: #fff;
+    min-height: 50px;
+  }
+  .chat-top2 {
+    background-color: #ededed;
+    min-height: 50px;
+    width: 33%;
+  }
+  
+  .profile-image {
+    margin-top: 7px;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+  }
+  
+  .contacts {
+    background-color: #ffffff;
+    min-height: 600px;
+    padding-left: 0px !important;
+    width: 25%;
+  }
+  
+  .contact-table-scroll {
+    overflow-y: scroll;
+    height: calc(100vh - 120px)
+  }
+  
+  .message-area {
+    background-color: #e4e1de;
+    min-height: 600px;
+    width: 75%;
+  }
+  
+  .message-table-scroll {
+    overflow-y: scroll;
+    height: 550px;
+  }
+  
+  .message-box {
+    background-color: #f0f0f0;
+    display: flex;
+    padding-right: 50px;
+    height: 60px;
+    padding-top: 10px;
+  }
+
+  .row{
+    display: flex !important;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .self-name{
+    width: 25%;
+  }
+
+  .other-name{
+    width: 75%;
+  }
+
+  tr td{
+    cursor: pointer;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-size: 17px;
+  }
+
+  .message {
+    padding: 8px;
+    margin: 8px;
+    border-radius: 8px;
+    width: fit-content;
+  }
+
+.sent {
+    background-color: #ac00e6;
+    color: white;
+    float: right;
+}
+
+.received {
+    background-color: #f1f1f1;
+}
+
+.chat-time{
+  font-size: 10px;
+}
+
+.active-chat{
+  background-color: #ecb3ff !important;
+  font-weight: 700;
+}
+
+.chat-submit{
+  font-size: 20px;
+  color:  #fff;
+  background-color: #ac00e6;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.message-input{
+  flex-grow: 1;
+}
+
+.form-control{
+  width: 95% !important;
+}

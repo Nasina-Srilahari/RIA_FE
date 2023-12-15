@@ -30,7 +30,7 @@ const Sidebar = () => {
         </div>
         <div>
             <hr></hr>
-            <div className='nav-items' style={{marginBottom: "5px"}}>
+            <div className='nav-items' style={{marginBottom: "5px"}} onClick={()=>{navigate("/chat")}}>
                 <FontAwesomeIcon icon="fa-solid fa-comment" />
                 <h4>Chat</h4>
             </div>
