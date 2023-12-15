@@ -12,7 +12,7 @@ import { Alert, CModal, CModalHeader, CModalBody, CModalFooter,CButton, CModalTi
 import api from '../../api/api';
 
 
-const Donated = () => {
+const Donated = (props) => {
   const [sidebar, setSidebar] = useState(false)
   const [visible, setVisible] = useState(false)
   library.add(faSearch)
@@ -63,16 +63,7 @@ const Donated = () => {
     fetchBooks()
   },[])
 
-  const sendEmailToSeller = () => {
 
-    console.log(sellerEmail)
-  
-    const subject = "Request for Donated Book";
-    const body = "I am writing to request the donated book. Please find the attached proof for your reference.";
-  
-    const gmailComposeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${encodeURIComponent(sellerEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; 
-    window.open(gmailComposeUrl, '_blank');
-  };
 
   return (
 <div>
@@ -101,7 +92,7 @@ const Donated = () => {
                   visibility={{visible, setVisible}}
                   book={book}
                   img={`data:image/png;base64,${img[i]}`}
-                  setSellerEmail={{sellerEmail, setSellerEmail}}
+                  setSellerEmail={setSellerEmail}
                 />
               ))
             ) : noBooksFound ? (
@@ -111,7 +102,7 @@ const Donated = () => {
         </div>
       </div>
       <>
-      <CModal
+      {/* <CModal
           alignment="center"
           visible={visible}
           onClose={() => setVisible(false)}
@@ -120,6 +111,51 @@ const Donated = () => {
             <CModalTitle id="request-book-alert">Request Book</CModalTitle>
           </CModalHeader>
           <CModalBody>
+          {books && (
+            <table className='profile-table'>
+              <tbody>
+                <tr>
+                  <div className="book-img-div dialogbox">
+                    <img src={img} alt="Book Cover" style={{ width: '130px', height: '130px', borderRadius: '9px', justifyContent:'center' }} />
+                  </div>
+                </tr>
+                <tr>
+                  <td className='profile-lable'>Book Name</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{books.book_name}</td>
+                </tr>
+                <tr>
+                  <td className='profile-lable'>Author</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{ books.author}</td>
+                </tr>
+                <tr>
+                  <td className='profile-lable'>Actual Price</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{  books &&   books.actual_price}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Selling Price</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{  books &&   books.selling_price}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Status</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{  books &&   books.status}</td>
+                </tr>
+
+                <tr>
+                  <td className='profile-lable'>Date Posted</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{  books &&   books.postedOn}</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+          <hr></hr>
               To get the donated book you need to send an email to the donar which contains the <strong>Valid reason</strong> to request for donated book along with the <strong>proof</strong> as attanchment.
           </CModalBody>
           <CModalFooter>
@@ -128,7 +164,7 @@ const Donated = () => {
             </CButton>
             <CButton color="primary" onClick={sendEmailToSeller} >Send Mail</CButton>
           </CModalFooter>
-      </CModal>
+      </CModal> */}
       </>
   </div>
   )

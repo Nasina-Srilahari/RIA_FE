@@ -36,14 +36,14 @@ const Login = () => {
         </div>
         <div className='login'>
           <div className="wrapper">
-            <form onSubmit={handleLogin} >
+            <form onSubmit={handleLogin} autocomplete="on">
               <h1>Login</h1>
               <div className="input-box">
-                <input type="text" placeholder="Email" required onChange={(e) => {setEmail(e.target.value)}}/>
+                <input type="text" placeholder="Email" required onChange={(e) => {setEmail(e.target.value)}} autocomplete="username" />
                 <i className='bx bxs-user'></i>
               </div>
               <div className="input-box">
-                <input type="password" placeholder="Password" required onChange={(e) => {setPassword(e.target.value)}}/>
+                <input type="password" placeholder="Password" required onChange={(e) => {setPassword(e.target.value)}} autocomplete="current-password"/>
                 <i className='bx bxs-lock-alt' ></i>
               </div>
               {/* <div className="remember-forgot">

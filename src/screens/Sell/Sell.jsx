@@ -18,6 +18,7 @@ const Sell = () => {
   const [actualPrice, setActualPrice] = useState('');
   const [sellingPrice, setSellingPrice] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user"))); // Parse the JSON string
 
   const statesInIndia = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -64,7 +65,7 @@ const Sell = () => {
     api.post('book/add-book',{
       book_name: bookName,
       author : author,
-      seller_name : seller,
+      seller_name : user.username,
       seller_phone : sphone,
       seller_email : semail,
       seller_state : sstate,
@@ -77,6 +78,7 @@ const Sell = () => {
       headers: { 'Content-Type':"multipart/form-data"}
     }).then(response => {
       console.log(response)
+      window.location.reload();
     })
   }
 
@@ -114,7 +116,7 @@ const Sell = () => {
                   </tr>
                   <tr>
                     <td><label>Seller Name</label></td>
-                    <td><input type="text" onChange={(e) => { setSeller(e.target.value) }} required /></td>
+                    <td><input type="text" value={user.username} readOnly /></td>
                   </tr>
                   <tr>
                     <td><label>Seller Mobile</label></td>
