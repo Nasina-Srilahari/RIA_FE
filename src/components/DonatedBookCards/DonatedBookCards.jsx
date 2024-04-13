@@ -185,6 +185,12 @@ const DonatedBookCards = (props) => {
                 </tr>
 
                 <tr>
+                  <td className='profile-lable'>Category</td>
+                  <td>:</td>
+                  <td className='profile-detail'>{props.book && props.book.category}</td>
+                </tr>
+
+                <tr>
                   <td className='profile-lable'>Date Posted</td>
                   <td>:</td>
                   <td className='profile-detail'>{props.book && formatDate(props.book.postedOn)}</td>

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const [sidebar, setSidebar] = useState(false);
   const [user, setUser] = useState(localStorage.getItem("user"));
-  const [img, setImage] = useState("");
+  const [img, setImage] = useState({});
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,11 @@ const Home = () => {
     api.post('book/ret-book').then(response => {
       console.log(response.data);
       setBooks(response.data.books);
-      setImage(response.data.img);
+      const imageMap = {};
+      response.data.books.forEach((book, index) => {
+        imageMap[book._id] = response.data.img[index] ? `data:image/png;base64,${response.data.img[index]}` : '';
+      });
+      setImage(imageMap);
       setLoading(false);
     });
   };
@@ -55,6 +59,20 @@ const Home = () => {
     }
   };
 
+  // Function to group books by category
+  const groupBooksByCategory = (books) => {
+    const groupedBooks = {};
+    books.forEach((book) => {
+      if (!groupedBooks[book.category]) {
+        groupedBooks[book.category] = [];
+      }
+      groupedBooks[book.category].push(book);
+    });
+    return groupedBooks;
+  };
+
+  // Group books by category
+  const groupedBooks = groupBooksByCategory(books);
 
   return (
     <div>
@@ -74,22 +92,23 @@ const Home = () => {
           />
           <FontAwesomeIcon icon={faSearch} onClick={handleSearch} />
           {/* <button className="search-btn" onClick={handleSearch}>Search</button> */}
-          <div className='books-cards-buy-wrapper'>
-            {loading ? (
-              <p>Loading...</p>
-            ) : books && books.length > 0 ? (
-              books.map((book, i) => (
+          {/* Iterate over each category and display books */}
+          {Object.entries(groupedBooks).map(([category, booksInCategory]) => (
+            <div key={category}>
+            <h2 style={{ textAlign: "left", margin: "20px" }}>{category}</h2>
+              <div className='books-cards-buy-wrapper'>
+                {/* Iterate over books in the current category */}
+                {booksInCategory.map((book, i) => (
                   <BookCards
-                    key={i}
-                    book={book}
-                    img={img[i] ? `data:image/png;base64,${img[i]}` : ''}
-                    // onClick={() => toggleModal(book)} // Pass the book to toggleModal
-                  />
-              ))
-            ) : (
-              <p>No books found.</p>
-            )}
-          </div>
+                      key={book._id}
+                      book={book}
+                      img={img[book._id] ? img[book._id] : ''}
+                      // onClick={() => toggleModal(book)} // Pass the book to toggleModal
+                    />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

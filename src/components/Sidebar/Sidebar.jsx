@@ -2,11 +2,11 @@ import React from 'react'
 import "../Sidebar/Sidebar.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser, faComment} from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser, faComment, faPersonCircleQuestion} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-    library.add(faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser, faComment)
+    library.add(faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser, faComment, faPersonCircleQuestion)
 
     const navigate= useNavigate();
     const usertype = JSON.parse(localStorage.getItem('user')).usertype
@@ -29,7 +29,7 @@ const Sidebar = () => {
             </div>
 
             {usertype === "admin" && (<div className='nav-items' onClick={()=>{navigate("/requestedUser")}}>
-                <FontAwesomeIcon icon="fa-solid fa-hand-holding-dollar"/>
+                <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
                 <h4>RequestedUser</h4>
             </div>)}
 

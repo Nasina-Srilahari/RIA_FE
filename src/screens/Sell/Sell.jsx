@@ -3,6 +3,7 @@ import './sell.css';
 import Navbar from './../../components/Navbar/Navbar';
 import sellImage from '../../assets/sell-form.svg'
 import api from '../../api/api';
+import AlertMessage from '../../components/AlertMessage/AlertMessage';
 
 
 const Sell = () => {
@@ -18,7 +19,10 @@ const Sell = () => {
   const [actualPrice, setActualPrice] = useState('');
   const [sellingPrice, setSellingPrice] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [category, setCategory] = useState('');
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user"))); // Parse the JSON string
+  const [alertMessage, setAlertMessage] = useState(null); 
+  const [alertType, setAlertType] = useState(null);
 
   const statesInIndia = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -60,6 +64,10 @@ const Sell = () => {
     }
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value); 
+  };
+
   const handleAddBook = (e) => {
     e.preventDefault()
     api.post('book/add-book',{
@@ -73,13 +81,27 @@ const Sell = () => {
       actual_price : actualPrice ,
       selling_price :sellingPrice ,
       status : selectedStatus,
+      category : category,
       img: img ,
     },{
       headers: { 'Content-Type':"multipart/form-data"}
     }).then(response => {
-      console.log(response)
-      window.location.reload();
-    })
+      console.log(response);
+        if (response.status === 200) {
+          setAlertMessage('Book uploaded successfully!');
+          setAlertType('success');
+          // Clear form fields after successful upload
+          // Clearing logic...
+        } else {
+          setAlertMessage('Error uploading book. Please try again.');
+          setAlertType('error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setAlertMessage('Error uploading book. Please try again.');
+        setAlertType('error');
+      });
   }
 
   const [sidebar, setSidebar] = useState(false)
@@ -97,6 +119,7 @@ const Sell = () => {
           <div className="sell-form">
             <form action="post">
               <h1>Upload Book Details</h1>
+              {alertMessage && <AlertMessage message={alertMessage} type={alertType} />}<br/>
               <table>
                 <tbody>
                   <tr>
@@ -199,6 +222,30 @@ const Sell = () => {
                       />
                     </td>
                   </tr>
+
+                  <tr>
+                  <td><label>Book Category</label></td>
+                    <td>
+                      <select
+                        value={category}
+                        onChange={handleCategoryChange}
+                        required
+                      >
+                        <option value="">Select an option</option>
+                        <option value="Health">Health</option>
+                        <option value="Personal Development">Personal Development</option>
+                        <option value="Motivational">Motivational</option>
+                        <option value="Historical fiction">Historical fiction</option>
+                        <option value="Science fiction">Science fiction</option>
+                        <option value="Literary fiction">Literary fiction</option>
+                        <option value="Science fiction">Academic Textbooks</option>
+                        <option value="Biography & memoir">Biography & memoir</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Upsc Civil Services">Upsc Civil Services</option>
+                      </select>
+                    </td>
+                  </tr>
+
                   <tr>
                     <td colSpan="2" >
                       <center><button className="sell-submit" onClick={handleAddBook}>Submit</button></center>

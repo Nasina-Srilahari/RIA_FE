@@ -1,0 +1,23 @@
+.alert-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 2px solid gray;
+    z-index: 1000;
+  }
+  
+  .success {
+    background-color: white;
+    color: #4caf50;
+  }
+  
+  .error {
+    background-color:white;
+    color:  #f44336;
+  }
+  

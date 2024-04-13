@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../api/api'
 import LoginImage from '../../assets/login.svg'
 import NavAuth from './../../components/NavAuth/NavAuth';
+import AlertMessage from '../../components/AlertMessage/AlertMessage';
 
 const Login = () => {
   const navigate = useNavigate()
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [alertMessage, setAlertMessage] = useState(null); 
+  const [alertType, setAlertType] = useState(null);
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -20,9 +23,11 @@ const Login = () => {
       localStorage.setItem("token",response.data.token)
       navigate("/home")
     })
-    .then(error => {
-      console.log(error)
-    })
+    .catch(error => {
+      console.error('Error:', error);
+      setAlertMessage('Incorrect Username or Password');
+      setAlertType('error');
+    });
   }
 
   return (
@@ -51,6 +56,7 @@ const Login = () => {
                 <a href="a">ForgotPassword</a>
               </div> */}
               <button type="submit" className="btn">Login</button>
+              {alertMessage && <AlertMessage message={alertMessage} type={alertType} />}<br/>
               <div className="register-link">
                 <p>Don't have an account? <a onClick={(e) => {navigate("/register")}} >Register</a></p>
               </div>

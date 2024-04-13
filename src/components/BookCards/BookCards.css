@@ -1,6 +1,7 @@
 .book-card{
     margin-top: 20px;
     margin-right: 20px;
+    margin-bottom: 20px;
     height: 380px;
     width: 250px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -59,4 +60,9 @@
 .price-details del{
     color: red;
 }
-
+.profile-table .profile-lable{
+    font-size: 12px;
+}
+.profile-table .profile-detail{
+    font-size: 12px;
+}

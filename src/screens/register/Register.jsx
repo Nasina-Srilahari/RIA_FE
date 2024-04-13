@@ -8,6 +8,7 @@ import api from '../../api/api';
 import { useState } from 'react';
 import NavAuth from './../../components/NavAuth/NavAuth';
 import RegisterImage from '../../assets/register.svg'
+import AlertMessage from '../../components/AlertMessage/AlertMessage';
 
 const Register = () => {
 
@@ -17,6 +18,8 @@ const Register = () => {
   const [password, setPassword] = useState()
   const [image, setImage] = useState();
   const [img, setImg] = useState();
+  const [alertMessage, setAlertMessage] = useState(null); 
+  const [alertType, setAlertType] = useState(null);
 
   const navigate = useNavigate()
   const submitHandler = (e) => {
@@ -28,13 +31,22 @@ const Register = () => {
       headers: { 'Content-Type':"multipart/form-data"}
     }
     ).then(response => {
-      console.log(response)
-      // localStorage.setItem("user", JSON.stringify(response.data.result))
-      // localStorage.setItem("token",response.data.token)
-      // navigate("/home")
-    }).then(error => {
-      console.log(error)
-    })
+      console.log(response);
+        if (response.status === 200) {
+          setAlertMessage('Registered Successfully, Wait until Verified by admin');
+          setAlertType('success');
+          // Clear form fields after successful upload
+          // Clearing logic...
+        } else {
+          setAlertMessage('Error in Registration. Please try again.');
+          setAlertType('error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setAlertMessage('Error in Registration. Please try again.');
+        setAlertType('error');
+      });
   }
   return (
   <div>
@@ -70,6 +82,7 @@ const Register = () => {
               <img className="book-img" src={image} />
             </div>
             <button type="submit" class="btn">Register</button>
+            {alertMessage && <AlertMessage message={alertMessage} type={alertType} />}<br/>
             <div class="login-link">
               <p>Have an account? <a href="#" onClick={(e) => {navigate("/")}}>&nbsp;Login</a> </p>
             </div>

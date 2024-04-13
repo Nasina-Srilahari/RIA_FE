@@ -58,3 +58,10 @@
 .dobated-price-details del{
     color: red;
 }
+
+.profile-table .profile-lable{
+    font-size: 12px;
+}
+.profile-table .profile-detail{
+    font-size: 12px;
+}
