@@ -28,43 +28,34 @@ const DonatedBookCards = (props) => {
     }
   }, [props.book._id]);
 
-  const handleColorChange = async (e) => {
+    const handleColorChange = async (e) => {
     const fav = e.target;
     if (fav !== null) {
-      // Add or remove from favorites
       try {
         if (isFavorite) {
           // Remove from favorites API
-          console.log(userId);
-          await api
-            .post("book/removeFavorite", {
-              bookId: props.book._id,
-              user: JSON.parse(localStorage.getItem("user")),
-            })
-            .then((response) => {
+          const user = JSON.parse(localStorage.getItem('user'));
+          const userId = user._id;
+          await api.post('book/removeFavorite', { bookId: props.book._id, userId })
+            .then(response => {
               setIsFavorite(false);
-              localStorage.setItem("user", JSON.stringify(response.data.user));
+              localStorage.setItem('user', JSON.stringify(response.data.user));
             });
         } else {
           // Check if userId is available before making the API call
           if (userId) {
             // Add to favorites API
-            await api
-              .post("book/addFavorite", {
-                bookId: props.book._id,
-                user: JSON.parse(localStorage.getItem("user")),
-              })
-              .then((response) => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const userId = user._id;
+            await api.post('book/addFavorite', { bookId: props.book._id, userId })
+              .then(response => {
                 setIsFavorite(true);
-                localStorage.setItem(
-                  "user",
-                  JSON.stringify(response.data.user)
-                );
+                localStorage.setItem('user', JSON.stringify(response.data.user));
               });
           }
         }
       } catch (error) {
-        console.error("Error adding/removing from favorites:", error);
+        console.error('Error adding/removing from favorites:', error);
         // Handle error as needed
       }
     }

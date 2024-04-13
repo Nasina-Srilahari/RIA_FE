@@ -63,6 +63,21 @@ const Donated = (props) => {
     fetchBooks()
   },[])
 
+    // Function to group books by category
+  const groupBooksByCategory = (books) => {
+    const groupedBooks = {};
+    books.forEach((book) => {
+      if (!groupedBooks[book.category]) {
+        groupedBooks[book.category] = [];
+      }
+      groupedBooks[book.category].push(book);
+    });
+    return groupedBooks;
+  };
+
+  // Group books by category
+  const groupedBooks = groupBooksByCategory(books);
+
 
 
   return (
@@ -83,23 +98,23 @@ const Donated = (props) => {
           />
           <FontAwesomeIcon icon={faSearch} onClick={handleSearch} />
           {/* <button className="search-btn" onClick={handleSearch}>Search</button> */}
-          <div className='books-cards-buy-wrapper'>
-            {loading ? (
-              <p>Loading...</p>
-            ) : books.length > 0 ? (
-              books.map((book, i) => (
-                <DonatedBookCards
+          {Object.entries(groupedBooks).map(([category, booksInCategory]) => (
+            <div key={category}>
+            <h2 style={{ textAlign: "left", margin: "20px" }}>{category}</h2>
+              <div className='books-cards-buy-wrapper'>
+                {/* Iterate over books in the current category */}
+                {booksInCategory.map((book, i) => (
+                  <DonatedBookCards
                   key={i}
                   visibility={{visible, setVisible}}
                   book={book}
                   img={`data:image/png;base64,${img[i]}`}
                   setSellerEmail={setSellerEmail}
-                />
-              ))
-            ) : noBooksFound ? (
-              <p>No books found.</p>
-            ) : null}
-          </div>
+                    />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <>
