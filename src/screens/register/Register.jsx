@@ -15,16 +15,23 @@ const Register = () => {
   const [name, setName] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [image, setImage] = useState();
+  const [img, setImg] = useState();
 
   const navigate = useNavigate()
   const submitHandler = (e) => {
     e.preventDefault()
     console.log("func")
-    api.post(`user/signup`,{name,username,email,password}).then(response => {
+    api.post(`user/signup`,
+    {name,username,email,password,usertype:"normal", verified:"notverified",img},
+    {
+      headers: { 'Content-Type':"multipart/form-data"}
+    }
+    ).then(response => {
       console.log(response)
-      localStorage.setItem("user", JSON.stringify(response.data.result))
-      localStorage.setItem("token",response.data.token)
-      navigate("/home")
+      // localStorage.setItem("user", JSON.stringify(response.data.result))
+      // localStorage.setItem("token",response.data.token)
+      // navigate("/home")
     }).then(error => {
       console.log(error)
     })
@@ -58,7 +65,10 @@ const Register = () => {
               <input type="Confirm password" placeholder="Confirm Password" required />
               <i><AiFillLock /></i>
             </div>
-
+            <div>
+              <input type="file" onChange={(e) => { setImage(URL.createObjectURL(e.target.files[0])); setImg(e.target.files[0]) }} required />
+              <img className="book-img" src={image} />
+            </div>
             <button type="submit" class="btn">Register</button>
             <div class="login-link">
               <p>Have an account? <a href="#" onClick={(e) => {navigate("/")}}>&nbsp;Login</a> </p>

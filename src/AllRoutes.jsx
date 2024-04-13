@@ -7,6 +7,7 @@ import Sell from './screens/Sell/Sell';
 import Donated from './screens/Donated/Donated';
 import Profile from './screens/Profile/Profile';
 import Chat from './screens/chat/Chat';
+import RequestedUser from './screens/requestedUser/RequestedUser';
 
 
 
@@ -20,6 +21,7 @@ const AllRoutes = () => {
         <Route path='/donated' element={<Donated/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/chat' element={<Chat/>}></Route>
+        <Route path='/requestedUser' element={<RequestedUser/>}></Route>
     </Routes>
   )
 }

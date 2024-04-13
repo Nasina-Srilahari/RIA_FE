@@ -9,6 +9,7 @@ const Sidebar = () => {
     library.add(faBagShopping, faHandHoldingDollar, faHandHoldingHand, faUser, faComment)
 
     const navigate= useNavigate();
+    const usertype = JSON.parse(localStorage.getItem('user')).usertype
   return (
     <div className='sidebar'>
         <div>
@@ -26,6 +27,11 @@ const Sidebar = () => {
                 <FontAwesomeIcon icon="fa-solid fa-hand-holding-dollar"/>
                 <h4>Sell/Donate</h4>
             </div>
+
+            {usertype === "admin" && (<div className='nav-items' onClick={()=>{navigate("/requestedUser")}}>
+                <FontAwesomeIcon icon="fa-solid fa-hand-holding-dollar"/>
+                <h4>RequestedUser</h4>
+            </div>)}
 
         </div>
         <div>
