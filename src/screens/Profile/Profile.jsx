@@ -435,7 +435,7 @@ const AddedBooksCard = ({ addedBooks, addedImgs }) => {
     console.log("Update button clicked for book:", selectedBook);
     setEditMode(false); // Disable edit mode after updating
     try {
-      const response = await api.post("/book/updatebook", { bookId: bookId, selectedBook });
+      const response = await api.post("/book/updatebook", { bookId: bookId, bookName:selectedBook.book_name, bookName:selectedBook.book_name, bookAuthor:selectedBook.author, bookActualPrice:selectedBook.actual_price, bookSellingPrice:selectedBook.selling_price, bookStatus:selectedBook.status });
       console.error("Book updated Successfully");
       window.location.reload();
     } catch (error) {

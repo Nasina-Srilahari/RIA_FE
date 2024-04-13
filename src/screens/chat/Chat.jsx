@@ -10,7 +10,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const socket = io('http://localhost:5000', {
+const socket = io('https://readitagain.onrender.com', {
   transports: ['websocket'], 
 });
 
@@ -68,7 +68,9 @@ const Chat = () => {
     }, []);
 
     const handleSendMessage = () => {
+
         socket.emit('send-message', {sender: user,receiver: chatUser,content: typedMsg});
+        document.getElementById('message_input').value='';
         // api.post('/message/sendMessage',
         // {
         //     sender : user._id,
@@ -177,7 +179,9 @@ const Chat = () => {
                             </div>
                             <div className="message-box p-3">
                                 <div className="message-input">
-                                    <input type="text" className="form-control" id="message_input" placeholder="Write message..." onChange={(e) => setTypedMsg(e.target.value)} />
+                                    <input type="text" className="form-control" id="message_input" placeholder="Write message..." onChange={(e) => setTypedMsg(e.target.value)} 
+                                        onKeyPress={(e) => {if(e.key === 'Enter'){handleSendMessage()}}}
+                                    />
                                 </div>
                                 <div className=" mt-1">
                                     <div className="control">
